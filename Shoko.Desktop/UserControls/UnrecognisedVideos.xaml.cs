@@ -127,6 +127,7 @@ namespace Shoko.Desktop.UserControls
 
             AllSeries = new ObservableCollection<VM_AnimeSeries_User>();
             ViewSeries = CollectionViewSource.GetDefaultView(AllSeries);
+            ViewSeries.SortDescriptions.Add(new SortDescription("SortName", ListSortDirection.Ascending));
             ViewSeries.Filter = SeriesSearchFilter;
 
             btnRefresh.Click += new RoutedEventHandler(btnRefresh_Click);
