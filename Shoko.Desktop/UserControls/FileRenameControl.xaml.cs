@@ -602,8 +602,8 @@ namespace Shoko.Desktop.UserControls
                 curFile++;
                 delay++;
 
-                VM_VideoLocal_Renamed raw = (VM_VideoLocal_Renamed)VM_ShokoServer.Instance.ShokoServices.RenameFilePreview(
-                    ren.VideoLocalID);
+                VM_VideoLocal_Renamed raw = (VM_VideoLocal_Renamed)VM_ShokoServer.Instance.ShokoServices.RenameAndMoveFilePreview(
+                    ren.VideoLocalID, job.Move);
 
                 ren.NewFileName = raw.NewFileName;
                 ren.Success = raw.Success;
@@ -638,6 +638,7 @@ namespace Shoko.Desktop.UserControls
             WorkerJob job = new WorkerJob();
             job.RenameScript = "NULL";
             job.FileResults = FileResults;
+            job.Move = chkMoveIfNeeded.IsChecked ?? false;
 
             previewWorker.RunWorkerAsync(job);
 
